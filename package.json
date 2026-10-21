@@ -1,0 +1,13 @@
+{
+  "name": "stom-booking",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --dir widget install && pnpm --dir widget build && node -e \"require('fs').cpSync('site/index.html','dist/index.html')\"",
+    "preview": "pnpm --dir widget exec vite preview --outDir ../dist --port 4173",
+    "dev:widget": "pnpm --dir widget dev"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

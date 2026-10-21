@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стоматология «Улыбка» — демо</title>
+<meta name="description" content="Демо-сайт стоматологии с виджетом онлайн-записи">
+<link rel="icon" href="data:,">
+<style>
+:root{--bg:#f4f4f6;--card:#fff;--ph:#dcdce1;--ph2:#e8e8ec;--ink:#8e8e97;--muted:#a9a9b1;--accent:#14611a;--accent-h:#39863f;--r:16px}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+section{padding:56px 0}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(24px,3.5vw,32px);line-height:1.2;margin-bottom:24px}
+h3{font-size:17px}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border:0;border-radius:12px;background:var(--accent);color:#fff;font:600 16px/1 inherit;font-family:inherit;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--accent-h)}
+.btn-lg{height:56px;padding:0 32px;font-size:17px}
+.ph{background:var(--ph);border-radius:var(--r)}
+.line{height:12px;border-radius:6px;background:var(--ph);margin-top:10px}
+.line.s{width:40%}.line.m{width:65%}.line.l{width:90%}
+.card{background:var(--card);border-radius:var(--r);padding:20px}
+.grid{display:grid;gap:16px}
+@media(min-width:640px){.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.g4{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:640px) and (max-width:899px){.g4{grid-template-columns:repeat(2,1fr)}}
+
+header{position:sticky;top:0;z-index:10;background:rgba(244,244,246,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--ph)}
+header .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;white-space:nowrap}
+.logo i{width:36px;height:36px;border-radius:10px;background:var(--ph)}
+nav{display:none;gap:24px;flex:1}
+nav span{width:72px;height:10px;border-radius:5px;background:var(--ph)}
+.phone{display:none;color:var(--muted);font-weight:600;white-space:nowrap}
+header .btn{margin-left:auto;height:44px;padding:0 18px}
+@media(min-width:900px){nav{display:flex}.phone{display:block}header .btn{margin-left:0}}
+
+.hero{padding:48px 0 56px}
+.hero .wrap{display:grid;gap:32px;align-items:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.1fr 1fr}}
+.hero p{color:var(--muted);font-size:18px;margin:16px 0 28px;max-width:520px}
+.hero .ph{aspect-ratio:4/3}
+
+.svc .ph{width:48px;height:48px;border-radius:12px;margin-bottom:16px}
+.svc .price{margin-top:16px;font-weight:600}
+.doc .ph{aspect-ratio:1;margin-bottom:16px}
+.doc p{color:var(--muted);font-size:14px}
+.rev .who{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.rev .who i{width:40px;height:40px;border-radius:50%;background:var(--ph)}
+.cta{background:var(--card);border-radius:24px;padding:40px 24px;text-align:center}
+.cta p{color:var(--muted);margin:8px 0 24px}
+.contacts .ph{min-height:260px}
+.contacts dl{display:grid;gap:16px}
+.contacts dt{color:var(--muted);font-size:14px}
+footer{padding:32px 0;border-top:1px solid var(--ph);color:var(--muted);font-size:14px}
+
+/* Модалка виджета записи */
+.bk{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(20,20,24,.5);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.bk.open{opacity:1;visibility:visible}
+.bk-box{position:relative;width:100%;height:100%;background:#eeeef2;overflow:hidden;transform:translateY(16px);transition:transform .2s}
+.bk.open .bk-box{transform:none}
+.bk iframe{display:block;width:100%;height:100%;border:0}
+.bk-load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+@media(min-width:560px){.bk-box{width:480px;height:min(780px,calc(100vh - 48px));border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.25)}}
+body.lock{overflow:hidden}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo"><i></i>Улыбка</div>
+    <nav aria-hidden="true"><span></span><span></span><span></span><span></span></nav>
+    <div class="phone">+7 (800) 000-00-00</div>
+    <button class="btn" data-booking>Записаться</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Ваша улыбка в надёжных руках</h1>
+        <p>Лечение, имплантация и гигиена в трёх филиалах. Свободное время врачей — прямо из расписания клиники.</p>
+        <button class="btn btn-lg" data-booking>Записаться онлайн</button>
+      </div>
+      <div class="ph" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Услуги</h2>
+      <div class="grid g4">
+        <div class="card svc"><div class="ph"></div><h3>Лечение кариеса</h3><div class="line l"></div><div class="line m"></div><div class="price">от 3 500 ₽</div></div>
+        <div class="card svc"><div class="ph"></div><h3>Профгигиена</h3><div class="line l"></div><div class="line m"></div><div class="price">от 4 900 ₽</div></div>
+        <div class="card svc"><div class="ph"></div><h3>Имплантация</h3><div class="line l"></div><div class="line m"></div><div class="price">от 35 000 ₽</div></div>
+        <div class="card svc"><div class="ph"></div><h3>Брекеты и элайнеры</h3><div class="line l"></div><div class="line m"></div><div class="price">от 60 000 ₽</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Врачи</h2>
+      <div class="grid g4">
+        <div class="card doc"><div class="ph"></div><h3>Иванова Анна</h3><p>Терапевт</p></div>
+        <div class="card doc"><div class="ph"></div><h3>Петров Дмитрий</h3><p>Хирург-имплантолог</p></div>
+        <div class="card doc"><div class="ph"></div><h3>Смирнова Елена</h3><p>Ортодонт</p></div>
+        <div class="card doc"><div class="ph"></div><h3>Кузнецов Артём</h3><p>Ортопед</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Отзывы</h2>
+      <div class="grid g3">
+        <div class="card rev"><div class="who"><i></i><b>Ольга</b></div><div class="line l"></div><div class="line l"></div><div class="line s"></div></div>
+        <div class="card rev"><div class="who"><i></i><b>Сергей</b></div><div class="line l"></div><div class="line m"></div><div class="line s"></div></div>
+        <div class="card rev"><div class="who"><i></i><b>Наталья</b></div><div class="line l"></div><div class="line l"></div><div class="line m"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta">
+        <h2 style="margin:0">Запишитесь на консультацию</h2>
+        <p>Выберите врача и удобное время — займёт меньше минуты</p>
+        <button class="btn btn-lg" data-booking>Записаться</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacts">
+    <div class="wrap">
+      <h2>Контакты</h2>
+      <div class="grid g2">
+        <div class="card">
+          <dl>
+            <div><dt>Филиалы</dt><dd>ул. Ленина, 24<br>пр. Мира, 108<br>ул. Садовая, 7</dd></div>
+            <div><dt>Телефон</dt><dd>+7 (800) 000-00-00</dd></div>
+            <div><dt>Режим работы</dt><dd>Пн–Сб 9:00–20:00, Вс 11:00–20:00</dd></div>
+          </dl>
+        </div>
+        <div class="ph" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© Стоматология «Улыбка» — демо-стенд виджета онлайн-записи</div></footer>
+
+<div class="bk" id="bk" role="dialog" aria-modal="true" aria-label="Онлайн-запись">
+  <div class="bk-box"><div class="bk-load">Загрузка…</div></div>
+</div>
+
+<script>
+(function () {
+  var SRC = 'widget/index.html'
+  var bk = document.getElementById('bk')
+  var box = bk.firstElementChild
+  var frame
+
+  // iframe создаём после загрузки страницы, когда браузер свободен: первая отрисовка сайта не ждёт виджет,
+  // а к моменту клика он уже готов.
+  function mount() {
+    if (frame) return
+    frame = document.createElement('iframe')
+    frame.src = SRC
+    frame.title = 'Онлайн-запись'
+    frame.onload = function () { box.firstElementChild.remove() }
+    box.appendChild(frame)
+  }
+
+  function open() {
+    mount()
+    bk.classList.add('open')
+    document.body.classList.add('lock')
+    frame.contentWindow && frame.contentWindow.postMessage({ type: 'booking:open' }, '*')
+    frame.focus()
+  }
+
+  function close() {
+    bk.classList.remove('open')
+    document.body.classList.remove('lock')
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-booking]')) open()
+    else if (e.target === bk) close()
+  })
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && bk.classList.contains('open')) close()
+  })
+  window.addEventListener('message', function (e) {
+    if (frame && e.source === frame.contentWindow && e.data && e.data.type === 'booking:close') close()
+  })
+  window.addEventListener('load', function () {
+    (window.requestIdleCallback || setTimeout)(mount, { timeout: 2000 })
+  })
+})()
+</script>
+</body>
+</html>
